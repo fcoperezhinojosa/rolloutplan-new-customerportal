@@ -1,788 +1,1317 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Customer Portal Rollout Plan — Suntransfers</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Portal Rollout Plan — Suntransfers</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  body {
-    font-family: 'Inter', -apple-system, sans-serif;
-    background: #f0f4f8;
-    color: #1a2332;
-    padding: 40px 20px;
-  }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #f0f4f8;
+      color: #1a2332;
+      padding: 40px 20px;
+    }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-  /* Header */
-  .header {
-    text-align: center;
-    margin-bottom: 48px;
-  }
-  .header h1 {
-    font-size: 32px;
-    font-weight: 800;
-    color: #1a2332;
-    margin-bottom: 8px;
-  }
-  .header .subtitle {
-    font-size: 16px;
-    color: #64748b;
-    font-weight: 400;
-  }
-  .header .date-range {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 6px 16px;
-    background: #e0e7ff;
-    color: #3730a3;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-  }
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
 
-  /* Legend */
-  .legend {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-  }
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: #475569;
-  }
-  .legend-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 3px;
-  }
+    .header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #1a2332;
+      margin-bottom: 8px;
+    }
 
-  /* Timeline Grid */
-  .timeline-grid {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.04);
-    overflow: hidden;
-    margin-bottom: 40px;
-  }
+    .header .subtitle {
+      font-size: 16px;
+      color: #64748b;
+      font-weight: 400;
+    }
 
-  /* Date Header */
-  .date-header {
-    display: grid;
-    grid-template-columns: 200px repeat(23, 1fr);
-    border-bottom: 2px solid #e2e8f0;
-    background: #f8fafc;
-  }
-  .date-header .label-col {
-    padding: 12px 16px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #94a3b8;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .date-header .date-col {
-    padding: 8px 2px;
-    text-align: center;
-    font-size: 11px;
-    color: #64748b;
-    border-left: 1px solid #f1f5f9;
-  }
-  .date-col .day-name {
-    font-weight: 600;
-    font-size: 10px;
-    color: #94a3b8;
-    display: block;
-  }
-  .date-col .day-num {
-    font-weight: 700;
-    font-size: 13px;
-    color: #334155;
-    display: block;
-    margin-top: 2px;
-  }
-  .date-col.weekend {
-    background: #fef2f2;
-  }
-  .date-col.holiday {
-    background: #fef9c3;
-  }
-  .date-col.today {
-    background: #dbeafe;
-  }
-  .date-col.milestone {
-    background: #f0fdf4;
-  }
+    .header .date-range {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 16px;
+      background: #e0e7ff;
+      color: #3730a3;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
 
-  /* Phase Rows */
-  .phase-section {
-    border-bottom: 1px solid #f1f5f9;
-  }
-  .phase-section:last-child {
-    border-bottom: none;
-  }
+    /* Legend */
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
 
-  .phase-row {
-    display: grid;
-    grid-template-columns: 200px repeat(23, 1fr);
-    min-height: 52px;
-    align-items: center;
-  }
-  .phase-row:hover {
-    background: #f8fafc;
-  }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #475569;
+    }
 
-  .phase-label {
-    padding: 8px 16px;
-    font-size: 13px;
-    font-weight: 500;
-    color: #334155;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .phase-label .icon {
-    font-size: 16px;
-  }
-  .phase-label .sublabel {
-    font-size: 11px;
-    color: #94a3b8;
-    font-weight: 400;
-    display: block;
-  }
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
 
-  .bar-cell {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    border-left: 1px solid #f8fafc;
-  }
+    /* Timeline Grid */
+    .timeline-grid {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 8px 32px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
 
-  .bar {
-    height: 28px;
-    border-radius: 4px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: 600;
-    color: white;
-    letter-spacing: 0.3px;
-    z-index: 2;
-  }
+    /* Date Header */
+    .date-header {
+      display: grid;
+      grid-template-columns: 200px repeat(23, 1fr);
+      border-bottom: 2px solid #e2e8f0;
+      background: #f8fafc;
+    }
 
-  /* Phase Colors */
-  .bar.stealth { background: linear-gradient(135deg, #6366f1, #818cf8); }
-  .bar.holiday { background: repeating-linear-gradient(45deg, #fbbf24, #fbbf24 8px, #f59e0b 8px, #f59e0b 16px); opacity: 0.6; }
-  .bar.soft { background: linear-gradient(135deg, #f97316, #fb923c); }
-  .bar.full { background: linear-gradient(135deg, #10b981, #34d399); }
-  .bar.done { background: linear-gradient(135deg, #94a3b8, #cbd5e1); }
-  .bar.dev { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
-  .bar.review { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
-  .bar.blocked { background: linear-gradient(135deg, #ef4444, #f87171); }
-  .bar.pending { background: linear-gradient(135deg, #eab308, #facc15); color: #713f12; }
+    .date-header .label-col {
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
-  /* Milestones */
-  .milestone-marker {
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
-    z-index: 10;
-  }
-  .milestone-diamond {
-    width: 14px;
-    height: 14px;
-    background: #ef4444;
-    transform: rotate(45deg);
-    margin: 3px auto;
-    border: 2px solid white;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  }
+    .date-header .date-col {
+      padding: 8px 2px;
+      text-align: center;
+      font-size: 11px;
+      color: #64748b;
+      border-left: 1px solid #f1f5f9;
+    }
 
-  /* Section Headers */
-  .section-header {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    background: #f8fafc;
-    border-bottom: 1px solid #e2e8f0;
-    border-top: 1px solid #e2e8f0;
-  }
-  .section-header .title {
-    grid-column: 1 / -1;
-    padding: 10px 16px;
-    font-size: 12px;
-    font-weight: 700;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-  }
+    .date-col .day-name {
+      font-weight: 600;
+      font-size: 10px;
+      color: #94a3b8;
+      display: block;
+    }
 
-  /* Milestone Cards */
-  .milestones-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-  .milestone-card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    border-left: 4px solid;
-    transition: transform 0.15s;
-  }
-  .milestone-card:hover { transform: translateY(-2px); }
-  .milestone-card.stealth { border-color: #6366f1; }
-  .milestone-card.soft { border-color: #f97316; }
-  .milestone-card.full { border-color: #10b981; }
-  .milestone-card.announce { border-color: #ec4899; }
-  .milestone-card .date {
-    font-size: 12px;
-    font-weight: 700;
-    color: #94a3b8;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .milestone-card h3 {
-    font-size: 16px;
-    font-weight: 700;
-    margin: 6px 0;
-    color: #1a2332;
-  }
-  .milestone-card p {
-    font-size: 13px;
-    color: #64748b;
-    line-height: 1.5;
-  }
-  .milestone-card .traffic {
-    margin-top: 10px;
-    padding: 6px 10px;
-    background: #f8fafc;
-    border-radius: 6px;
-    font-size: 12px;
-    color: #475569;
-    font-weight: 500;
-  }
+    .date-col .day-num {
+      font-weight: 700;
+      font-size: 13px;
+      color: #334155;
+      display: block;
+      margin-top: 2px;
+    }
 
-  /* Channel Impact Section */
-  .channel-section {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    padding: 32px;
-    margin-bottom: 40px;
-  }
-  .channel-section h2 {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 24px;
-    color: #1a2332;
-  }
-  .channel-bars {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .channel-row {
-    display: grid;
-    grid-template-columns: 200px 1fr 80px;
-    align-items: center;
-    gap: 12px;
-  }
-  .channel-name {
-    font-size: 13px;
-    font-weight: 500;
-    color: #334155;
-  }
-  .channel-bar-bg {
-    height: 32px;
-    background: #f1f5f9;
-    border-radius: 6px;
-    position: relative;
-    overflow: hidden;
-  }
-  .channel-bar-fill {
-    height: 100%;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-    font-size: 11px;
-    font-weight: 600;
-    color: white;
-    transition: width 0.8s ease;
-  }
-  .channel-sessions {
-    font-size: 13px;
-    font-weight: 600;
-    color: #64748b;
-    text-align: right;
-  }
-  .channel-phase-tag {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: 600;
-    margin-left: 8px;
-  }
-  .tag-soft { background: #fff7ed; color: #c2410c; }
-  .tag-full { background: #ecfdf5; color: #047857; }
-  .tag-stealth { background: #eef2ff; color: #4338ca; }
+    .date-col.weekend {
+      background: #fef2f2;
+    }
 
-  /* Risk Awareness */
-  .risk-section {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-  .risk-card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  }
-  .risk-card .risk-level {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 8px;
-  }
-  .risk-low .risk-level { background: #ecfdf5; color: #047857; }
-  .risk-med .risk-level { background: #fff7ed; color: #c2410c; }
-  .risk-high .risk-level { background: #fef2f2; color: #b91c1c; }
-  .risk-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-  .risk-card p { font-size: 12px; color: #64748b; line-height: 1.5; }
+    .date-col.holiday {
+      background: #fef9c3;
+    }
 
-  /* Workstream Labels */
-  .ws-group {
-    padding: 2px 0;
-  }
+    .date-col.today {
+      background: #dbeafe;
+    }
 
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 20px;
-    color: #94a3b8;
-    font-size: 12px;
-  }
+    .date-col.milestone {
+      background: #f0fdf4;
+    }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .milestones-row { grid-template-columns: 1fr; }
-    .risk-section { grid-template-columns: 1fr; }
-    .timeline-grid { overflow-x: auto; }
-    .date-header, .phase-row { min-width: 1100px; }
-  }
-</style>
+    /* Phase Rows */
+    .phase-section {
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .phase-section:last-child {
+      border-bottom: none;
+    }
+
+    .phase-row {
+      display: grid;
+      grid-template-columns: 200px repeat(23, 1fr);
+      min-height: 52px;
+      align-items: center;
+    }
+
+    .phase-row:hover {
+      background: #f8fafc;
+    }
+
+    .phase-label {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .phase-label .icon {
+      font-size: 16px;
+    }
+
+    .phase-label .sublabel {
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 400;
+      display: block;
+    }
+
+    .bar-cell {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      border-left: 1px solid #f8fafc;
+    }
+
+    .bar {
+      height: 28px;
+      border-radius: 4px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 0.3px;
+      z-index: 2;
+    }
+
+    /* Phase Colors */
+    .bar.stealth {
+      background: linear-gradient(135deg, #6366f1, #818cf8);
+    }
+
+    .bar.holiday {
+      background: repeating-linear-gradient(45deg, #fbbf24, #fbbf24 8px, #f59e0b 8px, #f59e0b 16px);
+      opacity: 0.6;
+    }
+
+    .bar.soft {
+      background: linear-gradient(135deg, #f97316, #fb923c);
+    }
+
+    .bar.full {
+      background: linear-gradient(135deg, #10b981, #34d399);
+    }
+
+    .bar.done {
+      background: linear-gradient(135deg, #94a3b8, #cbd5e1);
+    }
+
+    .bar.dev {
+      background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    }
+
+    .bar.review {
+      background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+    }
+
+    .bar.blocked {
+      background: linear-gradient(135deg, #ef4444, #f87171);
+    }
+
+    .bar.pending {
+      background: linear-gradient(135deg, #eab308, #facc15);
+      color: #713f12;
+    }
+
+    /* Milestones */
+    .milestone-marker {
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      z-index: 10;
+    }
+
+    .milestone-diamond {
+      width: 14px;
+      height: 14px;
+      background: #ef4444;
+      transform: rotate(45deg);
+      margin: 3px auto;
+      border: 2px solid white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Section Headers */
+    .section-header {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .section-header .title {
+      grid-column: 1 / -1;
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* Milestone Cards */
+    .milestones-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .milestone-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      border-left: 4px solid;
+      transition: transform 0.15s;
+    }
+
+    .milestone-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .milestone-card.stealth {
+      border-color: #6366f1;
+    }
+
+    .milestone-card.soft {
+      border-color: #f97316;
+    }
+
+    .milestone-card.full {
+      border-color: #10b981;
+    }
+
+    .milestone-card.announce {
+      border-color: #ec4899;
+    }
+
+    .milestone-card .date {
+      font-size: 12px;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .milestone-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 6px 0;
+      color: #1a2332;
+    }
+
+    .milestone-card p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .milestone-card .traffic {
+      margin-top: 10px;
+      padding: 6px 10px;
+      background: #f8fafc;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    /* Channel Impact Section */
+    .channel-section {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+
+    .channel-section h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #1a2332;
+    }
+
+    .channel-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .channel-row {
+      display: grid;
+      grid-template-columns: 200px 1fr 80px;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .channel-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: #334155;
+    }
+
+    .channel-bar-bg {
+      height: 32px;
+      background: #f1f5f9;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .channel-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: white;
+      transition: width 0.8s ease;
+    }
+
+    .channel-sessions {
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748b;
+      text-align: right;
+    }
+
+    .channel-phase-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .tag-soft {
+      background: #fff7ed;
+      color: #c2410c;
+    }
+
+    .tag-full {
+      background: #ecfdf5;
+      color: #047857;
+    }
+
+    .tag-stealth {
+      background: #eef2ff;
+      color: #4338ca;
+    }
+
+    /* Risk Awareness */
+    .risk-section {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .risk-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .risk-card .risk-level {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .risk-low .risk-level {
+      background: #ecfdf5;
+      color: #047857;
+    }
+
+    .risk-med .risk-level {
+      background: #fff7ed;
+      color: #c2410c;
+    }
+
+    .risk-high .risk-level {
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    .risk-card h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .risk-card p {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* Workstream Labels */
+    .ws-group {
+      padding: 2px 0;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #94a3b8;
+      font-size: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .milestones-row {
+        grid-template-columns: 1fr;
+      }
+
+      .risk-section {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-grid {
+        overflow-x: auto;
+      }
+
+      .date-header,
+      .phase-row {
+        min-width: 1100px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="container">
+  <div class="container">
 
-  <!-- Header -->
-  <div class="header">
-    <h1>New Customer Portal — Rollout Plan</h1>
-    <div class="subtitle">Suntransfers · customer.suntransfers.com → suntransfers.com/customer</div>
-    <div class="date-range">30 March — 14 April 2026</div>
-  </div>
-
-  <!-- Milestone Cards -->
-  <div class="milestones-row">
-    <div class="milestone-card stealth">
-      <div class="date">Mon 30 Mar</div>
-      <h3>Stealth Deploy</h3>
-      <p>Deploy to production. No links changed. Crawler blocked. Internal validation only.</p>
-      <div class="traffic">🔒 0 customer sessions exposed</div>
-    </div>
-    <div class="milestone-card soft">
-      <div class="date">Tue 7 Apr</div>
-      <h3>Soft Rollout</h3>
-      <p>Activate new links in emails & SMS. Only new bookings receive new links.</p>
-      <div class="traffic">📧 ~36k sessions/month (email/SMS)</div>
-    </div>
-    <div class="milestone-card full">
-      <div class="date">Mon 14 Apr</div>
-      <h3>Full Go-Live</h3>
-      <p>All links updated: web, PDF, admin, support. Legacy remains as fallback.</p>
-      <div class="traffic">🌍 ~59k sessions/month (all channels)</div>
-    </div>
-    <div class="milestone-card announce">
-      <div class="date">Mon 14 Apr</div>
-      <h3>Public Announcement</h3>
-      <p>Official communication to all customers about the new portal experience.</p>
-      <div class="traffic">📢 All markets & languages</div>
-    </div>
-  </div>
-
-  <!-- Legend -->
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:#6366f1"></div> Stealth (internal)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:repeating-linear-gradient(45deg,#fbbf24,#fbbf24 4px,#f59e0b 4px,#f59e0b 8px)"></div> Semana Santa</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#f97316"></div> Soft Rollout</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div> Full Go-Live</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div> Development</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#8b5cf6"></div> Review / Testing</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#94a3b8"></div> Done</div>
-  </div>
-
-  <!-- Main Timeline -->
-  <div class="timeline-grid">
-    <!-- Date Header: Mar 27 - Apr 18 (23 days) -->
-    <div class="date-header">
-      <div class="label-col">Workstream</div>
-      <div class="date-col today"><span class="day-name">Thu</span><span class="day-num">27</span></div>
-      <div class="date-col"><span class="day-name">Fri</span><span class="day-num">28</span></div>
-      <div class="date-col weekend"><span class="day-name">Sat</span><span class="day-num">29</span></div>
-      <div class="date-col milestone"><span class="day-name">Mon</span><span class="day-num">30</span></div>
-      <div class="date-col"><span class="day-name">Tue</span><span class="day-num">31</span></div>
-      <div class="date-col"><span class="day-name">Wed</span><span class="day-num">1</span></div>
-      <div class="date-col"><span class="day-name">Thu</span><span class="day-num">2</span></div>
-      <div class="date-col holiday"><span class="day-name">Fri</span><span class="day-num">3</span></div>
-      <div class="date-col holiday"><span class="day-name">Sat</span><span class="day-num">4</span></div>
-      <div class="date-col weekend"><span class="day-name">Sun</span><span class="day-num">5</span></div>
-      <div class="date-col holiday"><span class="day-name">Mon</span><span class="day-num">6</span></div>
-      <div class="date-col milestone"><span class="day-name">Tue</span><span class="day-num">7</span></div>
-      <div class="date-col"><span class="day-name">Wed</span><span class="day-num">8</span></div>
-      <div class="date-col"><span class="day-name">Thu</span><span class="day-num">9</span></div>
-      <div class="date-col"><span class="day-name">Fri</span><span class="day-num">10</span></div>
-      <div class="date-col"><span class="day-name">Sat</span><span class="day-num">11</span></div>
-      <div class="date-col weekend"><span class="day-name">Sun</span><span class="day-num">12</span></div>
-      <div class="date-col"><span class="day-name">Mon</span><span class="day-num">13</span></div>
-      <div class="date-col milestone"><span class="day-name">Tue</span><span class="day-num">14</span></div>
-      <div class="date-col"><span class="day-name">Wed</span><span class="day-num">15</span></div>
-      <div class="date-col"><span class="day-name">Thu</span><span class="day-num">16</span></div>
-      <div class="date-col"><span class="day-name">Fri</span><span class="day-num">17</span></div>
-      <div class="date-col"><span class="day-name">Sat</span><span class="day-num">18</span></div>
+    <!-- Header -->
+    <div class="header">
+      <h1>New Customer Portal — Rollout Plan</h1>
+      <div class="subtitle">Suntransfers · customer.suntransfers.com → suntransfers.com/customer</div>
+      <div class="date-range">30 March — 14 April 2026</div>
     </div>
 
-    <!-- PHASE OVERVIEW -->
-    <div class="section-header"><div class="title">📅 Phases</div></div>
-
-    <div class="phase-row">
-      <div class="phase-label"><span class="icon">🔒</span> <div>Phase 3a<span class="sublabel">Stealth Deploy</span></div></div>
-      <!-- cols 1-23: bar from col 4 (Mar 30) to col 11 (Apr 6) = 8 days -->
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar stealth" style="left:0;width:calc(800% + 7px)">STEALTH — Internal validation</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><span class="icon">🟡</span> <div>Semana Santa<span class="sublabel">No risk (stealth)</span></div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar holiday" style="left:0;width:calc(400% + 3px)">HOLIDAYS</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><span class="icon">🚀</span> <div>Phase 3b<span class="sublabel">Soft Rollout</span></div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar soft" style="left:0;width:calc(700% + 6px)">SOFT ROLLOUT — New bookings via email/SMS</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><span class="icon">🌍</span> <div>Phase 4<span class="sublabel">Full Go-Live</span></div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar full" style="left:0;width:calc(500% + 4px)">FULL GO-LIVE — All traffic</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <!-- WORKSTREAMS -->
-    <div class="section-header"><div class="title">🔧 Technical & Scripts</div></div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>GTM + OneTrust + Ada<span class="sublabel">Facundo / Kiko</span></div></div>
-      <div class="bar-cell" style="position:relative"><div class="bar dev" style="left:0;width:calc(300% + 2px)">Install & verify</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar done" style="left:0;width:calc(100%)">✓</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>Invoice (hide in prod)<span class="sublabel">David</span></div></div>
-      <div class="bar-cell" style="position:relative"><div class="bar blocked" style="left:0;width:calc(300% + 2px)">Hide section</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar done" style="left:0;width:calc(100%)">✓</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>Invoice (frontend dev)<span class="sublabel">David</span></div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar dev" style="left:0;width:calc(1100% + 10px)">Frontend development</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar review" style="left:0;width:calc(200% + 1px)">Test</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar done" style="left:0;width:calc(100%)">✓</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>Monitoring setup<span class="sublabel">Facundo / Kiko</span></div></div>
-      <div class="bar-cell" style="position:relative"><div class="bar dev" style="left:0;width:calc(200% + 1px)">NewRelic + Clarity</div></div>
-      <div class="bar-cell"></div>
-      <div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar done" style="left:0;width:calc(100%)">✓</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="section-header"><div class="title">🔗 Links & Redirects (WEB-9082)</div></div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>URL spike + route mapping<span class="sublabel">Facundo</span></div></div>
-      <div class="bar-cell" style="position:relative"><div class="bar review" style="left:0;width:calc(200% + 1px)">Complete spike</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar done" style="left:0;width:calc(100%)">✓</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>Email/SMS link changes<span class="sublabel">Kiko / Dev · 36k sess</span></div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar dev" style="left:0;width:calc(500% + 4px)">Develop + test Brevo templates</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar soft" style="left:0;width:calc(100%)">🚀</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>Web links update<span class="sublabel">Julio / Dev · 10.5k sess</span></div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar dev" style="left:0;width:calc(400% + 3px)">Header, footer, CTAs</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar full" style="left:0;width:calc(100%)">✓</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>Ada + Zendesk links<span class="sublabel">Kiko · 3.9k sess</span></div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar dev" style="left:0;width:calc(300% + 2px)">Update macros + chatbot</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar full" style="left:0;width:calc(100%)">✓</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>PDF voucher + redirects<span class="sublabel">Facundo</span></div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar dev" style="left:0;width:calc(500% + 4px)">Redirects + PDF templates</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar full" style="left:0;width:calc(100%)">✓</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="section-header"><div class="title">🌍 Translations & Content</div></div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>Native reviews (priority)<span class="sublabel">Kiko + natives</span></div></div>
-      <div class="bar-cell" style="position:relative"><div class="bar review" style="left:0;width:calc(500% + 4px)">EN, ES + top languages</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar done" style="left:0;width:calc(100%)">✓</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>Native reviews (rest)<span class="sublabel">Kiko + natives</span></div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar review" style="left:0;width:calc(700% + 6px)">Remaining languages</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar done" style="left:0;width:calc(100%)">✓</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>Rollback plan<span class="sublabel">Facundo + Kiko</span></div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar pending" style="left:0;width:calc(100%)">📋</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="section-header"><div class="title">👥 People & Communication</div></div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>CS monitoring setup<span class="sublabel">Kiko</span></div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar dev" style="left:0;width:calc(100%)">Setup</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>CS team briefing<span class="sublabel">Kiko</span></div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar review" style="left:0;width:calc(200% + 1px)">Brief CS team</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-    </div>
-
-    <div class="phase-row">
-      <div class="phase-label"><div>Public announcement<span class="sublabel">Kiko + Marketing</span></div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar dev" style="left:0;width:calc(600% + 5px)">Draft announcement</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div>
-      <div class="bar-cell" style="position:relative"><div class="bar full" style="left:0;width:calc(100%)">📢</div></div>
-      <div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div>
-      <div class="bar-cell"></div>
-    </div>
-
-  </div>
-
-  <!-- Channel Impact -->
-  <div class="channel-section">
-    <h2>📧 Channel Migration Sequence — Sessions Impacted</h2>
-    <div class="channel-bars">
-      <div class="channel-row">
-        <div class="channel-name">Email/SMS <span class="channel-phase-tag tag-soft">7 Apr</span></div>
-        <div class="channel-bar-bg"><div class="channel-bar-fill" style="width:61%;background:linear-gradient(90deg,#f97316,#fb923c)">61% — Soft Rollout</div></div>
-        <div class="channel-sessions">~36k</div>
+    <!-- Milestone Cards -->
+    <div class="milestones-row">
+      <div class="milestone-card stealth">
+        <div class="date">Mon 30 Mar</div>
+        <h3>Stealth Deploy</h3>
+        <p>Deploy to production. No links changed. Crawler blocked. Internal validation only.</p>
+        <div class="traffic">🔒 0 customer sessions exposed</div>
       </div>
-      <div class="channel-row">
-        <div class="channel-name">suntransfers.com <span class="channel-phase-tag tag-full">7-11 Apr</span></div>
-        <div class="channel-bar-bg"><div class="channel-bar-fill" style="width:18%;background:linear-gradient(90deg,#10b981,#34d399)">18%</div></div>
-        <div class="channel-sessions">~10.5k</div>
+      <div class="milestone-card soft">
+        <div class="date">Tue 7 Apr</div>
+        <h3>Soft Rollout</h3>
+        <p>Activate new links in emails & SMS. Only new bookings receive new links.</p>
+        <div class="traffic">📧 ~36k sessions/month (email/SMS)</div>
       </div>
-      <div class="channel-row">
-        <div class="channel-name">booking.suntransfers.com <span class="channel-phase-tag tag-soft">7 Apr</span></div>
-        <div class="channel-bar-bg"><div class="channel-bar-fill" style="width:11%;background:linear-gradient(90deg,#f97316,#fb923c)">11%</div></div>
-        <div class="channel-sessions">~6.3k</div>
+      <div class="milestone-card full">
+        <div class="date">Mon 14 Apr</div>
+        <h3>Full Go-Live</h3>
+        <p>All links updated: web, PDF, admin, support. Legacy remains as fallback.</p>
+        <div class="traffic">🌍 ~59k sessions/month (all channels)</div>
       </div>
-      <div class="channel-row">
-        <div class="channel-name">Soporte (Zendesk + Ada) <span class="channel-phase-tag tag-full">7-11 Apr</span></div>
-        <div class="channel-bar-bg"><div class="channel-bar-fill" style="width:7%;background:linear-gradient(90deg,#10b981,#34d399)">7%</div></div>
-        <div class="channel-sessions">~3.9k</div>
-      </div>
-      <div class="channel-row">
-        <div class="channel-name">Google/Bing/DDG <span class="channel-phase-tag tag-full">14 Apr</span></div>
-        <div class="channel-bar-bg"><div class="channel-bar-fill" style="width:3%;background:linear-gradient(90deg,#94a3b8,#cbd5e1)">3%</div></div>
-        <div class="channel-sessions">~2k</div>
-      </div>
-      <div class="channel-row">
-        <div class="channel-name">Partners portal <span class="channel-phase-tag tag-full">14 Apr</span></div>
-        <div class="channel-bar-bg"><div class="channel-bar-fill" style="width:0.6%;background:linear-gradient(90deg,#94a3b8,#cbd5e1);min-width:20px">0.6%</div></div>
-        <div class="channel-sessions">~350</div>
+      <div class="milestone-card announce">
+        <div class="date">Mon 14 Apr</div>
+        <h3>Public Announcement</h3>
+        <p>Official communication to all customers about the new portal experience.</p>
+        <div class="traffic">📢 All markets & languages</div>
       </div>
     </div>
-  </div>
 
-  <!-- Key Decisions -->
-  <div class="risk-section">
-    <div class="risk-card risk-high">
-      <div class="risk-level">Decision needed</div>
-      <h4>MyBooking homepage button</h4>
-      <p>24.7% desktop traffic (8k sessions). Keep pointing to legacy during soft rollout or redirect to new portal? <strong>Decide by 4 Apr.</strong></p>
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#6366f1"></div> Stealth (internal)
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot"
+          style="background:repeating-linear-gradient(45deg,#fbbf24,#fbbf24 4px,#f59e0b 4px,#f59e0b 8px)"></div> Semana
+        Santa
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#f97316"></div> Soft Rollout
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#10b981"></div> Full Go-Live
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#3b82f6"></div> Development
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#8b5cf6"></div> Review / Testing
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#94a3b8"></div> Done
+      </div>
     </div>
-    <div class="risk-card risk-med">
-      <div class="risk-level">Clarify</div>
-      <h4>booking.suntransfers.com redirect</h4>
-      <p>13.4% desktop traffic (4.4k sessions). Does the post-purchase redirect update with Brevo or independently? <strong>Ask Facundo.</strong></p>
-    </div>
-    <div class="risk-card risk-low">
-      <div class="risk-level">Low risk</div>
-      <h4>Search engines</h4>
-      <p>Only 3% of total traffic. Crawler blocked. No SEO action needed until full go-live on 14 Apr.</p>
-    </div>
-  </div>
 
-  <div class="footer">
-    Suntransfers Customer Portal Rollout · Data source: Microsoft Clarity (Suntransfers segment) · Last updated: 27 March 2026
-  </div>
+    <!-- Main Timeline -->
+    <div class="timeline-grid">
+      <!-- Date Header: Mar 27 - Apr 18 (23 days) -->
+      <div class="date-header">
+        <div class="label-col">Workstream</div>
+        <div class="date-col today"><span class="day-name">Thu</span><span class="day-num">27</span></div>
+        <div class="date-col"><span class="day-name">Fri</span><span class="day-num">28</span></div>
+        <div class="date-col weekend"><span class="day-name">Sat</span><span class="day-num">29</span></div>
+        <div class="date-col milestone"><span class="day-name">Mon</span><span class="day-num">30</span></div>
+        <div class="date-col"><span class="day-name">Tue</span><span class="day-num">31</span></div>
+        <div class="date-col"><span class="day-name">Wed</span><span class="day-num">1</span></div>
+        <div class="date-col"><span class="day-name">Thu</span><span class="day-num">2</span></div>
+        <div class="date-col holiday"><span class="day-name">Fri</span><span class="day-num">3</span></div>
+        <div class="date-col holiday"><span class="day-name">Sat</span><span class="day-num">4</span></div>
+        <div class="date-col weekend"><span class="day-name">Sun</span><span class="day-num">5</span></div>
+        <div class="date-col holiday"><span class="day-name">Mon</span><span class="day-num">6</span></div>
+        <div class="date-col milestone"><span class="day-name">Tue</span><span class="day-num">7</span></div>
+        <div class="date-col"><span class="day-name">Wed</span><span class="day-num">8</span></div>
+        <div class="date-col"><span class="day-name">Thu</span><span class="day-num">9</span></div>
+        <div class="date-col"><span class="day-name">Fri</span><span class="day-num">10</span></div>
+        <div class="date-col"><span class="day-name">Sat</span><span class="day-num">11</span></div>
+        <div class="date-col weekend"><span class="day-name">Sun</span><span class="day-num">12</span></div>
+        <div class="date-col"><span class="day-name">Mon</span><span class="day-num">13</span></div>
+        <div class="date-col milestone"><span class="day-name">Tue</span><span class="day-num">14</span></div>
+        <div class="date-col"><span class="day-name">Wed</span><span class="day-num">15</span></div>
+        <div class="date-col"><span class="day-name">Thu</span><span class="day-num">16</span></div>
+        <div class="date-col"><span class="day-name">Fri</span><span class="day-num">17</span></div>
+        <div class="date-col"><span class="day-name">Sat</span><span class="day-num">18</span></div>
+      </div>
 
-</div>
+      <!-- PHASE OVERVIEW -->
+      <div class="section-header">
+        <div class="title">📅 Phases</div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label"><span class="icon">🔒</span>
+          <div>Phase 3a<span class="sublabel">Stealth Deploy</span></div>
+        </div>
+        <!-- cols 1-23: bar from col 4 (Mar 30) to col 11 (Apr 6) = 8 days -->
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar stealth" style="left:0;width:calc(800% + 7px)">STEALTH — Internal validation</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label"><span class="icon">🟡</span>
+          <div>Semana Santa<span class="sublabel">No risk (stealth)</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar holiday" style="left:0;width:calc(400% + 3px)">HOLIDAYS</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label"><span class="icon">🚀</span>
+          <div>Phase 3b<span class="sublabel">Soft Rollout</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar soft" style="left:0;width:calc(700% + 6px)">SOFT ROLLOUT — New bookings via email/SMS</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label"><span class="icon">🌍</span>
+          <div>Phase 4<span class="sublabel">Full Go-Live</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar full" style="left:0;width:calc(500% + 4px)">FULL GO-LIVE — All traffic</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <!-- WORKSTREAMS -->
+      <div class="section-header">
+        <div class="title">🔧 Technical & Scripts</div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>GTM + OneTrust + Ada<span class="sublabel">Facundo / Kiko</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+
+        <div class="bar-cell" style="position:relative">
+          <div class="bar dev" style="left:0;width:calc(300% + 2px)">Install & verify</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar done" style="left:0;width:calc(100%)">✓</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>Invoice (frontend dev)<span class="sublabel">Julio</span></div>
+        </div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar dev" style="left:0;width:calc(380% + 9px)">Frontend development</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar review" style="left:0;width:calc(200% + 1px)">Test</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar done" style="left:0;width:calc(100%)">✓</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>Monitoring setup<span class="sublabel">Facundo / Kiko</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar dev" style="left:0;width:calc(300% + 1px)">NewRelic + Clarity</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar done" style="left:0;width:calc(100%)">✓</div>
+        </div>
+
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="section-header">
+        <div class="title">🔗 Links & Redirects (WEB-9082)</div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>URL spike + route mapping<span class="sublabel">Facundo</span></div>
+        </div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar review" style="left:0;width:calc(300% + 1px)">Complete spike</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar done" style="left:0;width:calc(100%)">✓</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>Email/SMS link changes<span class="sublabel">Kiko / Dev · 36k sess</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar dev" style="left:0;width:calc(500% + 4px)">Develop + test Sendgrid templates</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar soft" style="left:0;width:calc(100%)">🚀</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>Web links update<span class="sublabel">Julio / Dev · 10.5k sess</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar dev" style="left:0;width:calc(400% + 3px)">Header, footer, CTAs</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar full" style="left:0;width:calc(100%)">✓</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>Ada + Zendesk links<span class="sublabel">Kiko · 3.9k sess</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar dev" style="left:0;width:calc(300% + 2px)">Update macros + chatbot</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar full" style="left:0;width:calc(100%)">✓</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>PDF voucher + redirects<span class="sublabel">Facundo</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar dev" style="left:0;width:calc(500% + 4px)">Redirects + PDF templates</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar full" style="left:0;width:calc(100%)">✓</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="section-header">
+        <div class="title">🌍 Translations & Content</div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>Native reviews (priority)<span class="sublabel">Kiko + natives</span></div>
+        </div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar review" style="left:0;width:calc(500% + 4px)">EN, ES + top languages</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar done" style="left:0;width:calc(100%)">✓</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>Native reviews (rest)<span class="sublabel">Kiko + natives</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar review" style="left:0;width:calc(700% + 6px)">Remaining languages</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar done" style="left:0;width:calc(100%)">✓</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>Rollback plan<span class="sublabel">Facundo + Kiko</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar pending" style="left:0;width:calc(100%)">📋</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="section-header">
+        <div class="title">👥 People & Communication</div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>CS monitoring setup<span class="sublabel">Kiko</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar dev" style="left:0;width:calc(100%)">Setup</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>CS team briefing<span class="sublabel">Kiko</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar review" style="left:0;width:calc(200% + 1px)">Brief CS team</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-label">
+          <div>Public announcement<span class="sublabel">Kiko + Marketing</span></div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar dev" style="left:0;width:calc(600% + 5px)">Draft announcement</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell" style="position:relative">
+          <div class="bar full" style="left:0;width:calc(100%)">📢</div>
+        </div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+        <div class="bar-cell"></div>
+      </div>
+
+    </div>
+
+    <!-- Channel Impact -->
+    <div class="channel-section">
+      <h2>📧 Channel Migration Sequence — Sessions Impacted</h2>
+      <div class="channel-bars">
+        <div class="channel-row">
+          <div class="channel-name">Email/SMS <span class="channel-phase-tag tag-soft">7 Apr</span></div>
+          <div class="channel-bar-bg">
+            <div class="channel-bar-fill" style="width:61%;background:linear-gradient(90deg,#f97316,#fb923c)">61% — Soft
+              Rollout</div>
+          </div>
+          <div class="channel-sessions">~36k</div>
+        </div>
+        <div class="channel-row">
+          <div class="channel-name">suntransfers.com <span class="channel-phase-tag tag-full">7-11 Apr</span></div>
+          <div class="channel-bar-bg">
+            <div class="channel-bar-fill" style="width:18%;background:linear-gradient(90deg,#10b981,#34d399)">18%</div>
+          </div>
+          <div class="channel-sessions">~10.5k</div>
+        </div>
+        <div class="channel-row">
+          <div class="channel-name">booking.suntransfers.com <span class="channel-phase-tag tag-soft">7 Apr</span></div>
+          <div class="channel-bar-bg">
+            <div class="channel-bar-fill" style="width:11%;background:linear-gradient(90deg,#f97316,#fb923c)">11%</div>
+          </div>
+          <div class="channel-sessions">~6.3k</div>
+        </div>
+        <div class="channel-row">
+          <div class="channel-name">Soporte (Zendesk + Ada) <span class="channel-phase-tag tag-full">7-11 Apr</span>
+          </div>
+          <div class="channel-bar-bg">
+            <div class="channel-bar-fill" style="width:7%;background:linear-gradient(90deg,#10b981,#34d399)">7%</div>
+          </div>
+          <div class="channel-sessions">~3.9k</div>
+        </div>
+        <div class="channel-row">
+          <div class="channel-name">Google/Bing/DDG <span class="channel-phase-tag tag-full">14 Apr</span></div>
+          <div class="channel-bar-bg">
+            <div class="channel-bar-fill" style="width:3%;background:linear-gradient(90deg,#94a3b8,#cbd5e1)">3%</div>
+          </div>
+          <div class="channel-sessions">~2k</div>
+        </div>
+        <div class="channel-row">
+          <div class="channel-name">Partners portal <span class="channel-phase-tag tag-full">14 Apr</span></div>
+          <div class="channel-bar-bg">
+            <div class="channel-bar-fill"
+              style="width:0.6%;background:linear-gradient(90deg,#94a3b8,#cbd5e1);min-width:20px">0.6%</div>
+          </div>
+          <div class="channel-sessions">~350</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Decisions -->
+    <div class="risk-section">
+      <div class="risk-card risk-high">
+        <div class="risk-level">Decision needed</div>
+        <h4>MyBooking homepage button</h4>
+        <p>24.7% desktop traffic (8k sessions). Keep pointing to legacy during soft rollout or redirect to new portal?
+          <strong>Decide by 4 Apr.</strong>
+        </p>
+      </div>
+      <div class="risk-card risk-med">
+        <div class="risk-level">Clarify</div>
+        <h4>booking.suntransfers.com redirect</h4>
+        <p>13.4% desktop traffic (4.4k sessions). Does the post-purchase redirect update with Brevo or independently?
+          <strong>Ask Facundo.</strong>
+        </p>
+      </div>
+      <div class="risk-card risk-low">
+        <div class="risk-level">Low risk</div>
+        <h4>Search engines</h4>
+        <p>Only 3% of total traffic. Crawler blocked. No SEO action needed until full go-live on 14 Apr.</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      Suntransfers Customer Portal Rollout · Data source: Microsoft Clarity (Suntransfers segment) · Last updated: 27
+      March 2026
+    </div>
+
+  </div>
 </body>
+
 </html>
